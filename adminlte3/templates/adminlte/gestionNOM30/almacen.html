@@ -1,0 +1,281 @@
+{% extends 'adminlte/base.html' %}
+
+{% block content %}
+<div class="shadow-sm p-3 mb-4 bg-white rounded ">
+
+
+  <div class="card-header" style="background: linear-gradient(to bottom , #049e54, #038f50); ">
+ 
+   
+  <legend style="font-family: Lucida Bright" class="text-white text-center"> GUÍA DE VERIFICACIÓN ALMACEN </legend>
+  {% if alma == "AlmacenVillahermosa" %}
+  <legend style="font-family: Lucida Bright" class="text-white text-center"> 
+  "ALMACEN VILLAHERMOSA"</legend>
+  {% elif alma == "Almacen16.5" %}
+  <legend style="font-family: Lucida Bright" class="text-white text-center"> 
+    "ALMACEN 16.5"</legend>
+  {% elif alma == "AlmacenElSabino"  %}
+    <legend style="font-family: Lucida Bright" class="text-white text-center"> 
+      "El SABINO"</legend>
+  {% elif alma == "AlmacenChicoasen" %}
+      <legend style="font-family: Lucida Bright" class="text-white text-center"> 
+        "CHICOASEN"</legend>
+  {% elif alma == "AlmacenAngostura" %}
+        <legend style="font-family: Lucida Bright" class="text-white text-center"> 
+          "ANGOSTURA"</legend>        
+  {% elif alma == "AlmacenesMalpaso"  %}
+          <legend style="font-family: Lucida Bright" class="text-white text-center"> 
+            "ALMACENES MALPASO"</legend>   
+  {% elif alma == "AlmacenesMalpaso"  %}
+      <legend style="font-family: Lucida Bright" class="text-white text-center"> 
+        "ALMACEN MALPASO"</legend>           
+                   
+  {% endif %}
+     </div>
+
+
+<!-- Cambios en cada submodulo-->
+  <div class=" card p-3 mb-4 ">
+  
+  <div class=" p-3">
+<h5 style="font-family: Times new roman">Responda a cada una de las siguientes preguntas clasificadas por categoría:</h5>
+ 
+</div>
+ 
+
+<script type="text/javascript">
+    function showContent(numerito) {
+        element = document.getElementById('content-'+ numerito);
+          check = document.getElementById('check-'+ numerito);
+          Nocheck = document.getElementById('Nocheck-'+ numerito);
+          coment = document.getElementById('comentario-'+ numerito);
+        
+       if (check.checked) {
+        element.style.display='none';
+        coment.value = '';
+        Nocheck.disabled=true;
+       }
+
+     else{
+            element.style.display='block';
+            Nocheck.disabled=false;
+        }
+       
+    
+    }
+    
+</script>
+
+ <div class="card-body ">
+<form method='POST' >
+{% csrf_token %}
+{% for pregunta in pregu %}
+
+{% if forloop.counter == 1 %}
+<div class="card-header  border text-center" style="background:#f7f7f7a6; font-family: Arial">
+<h4>{{pregunta.get_clasificacion_display}}</h4>
+</div></br>
+
+<div class="card text-white" style="background:#049e56;">
+<h5>  &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+{% elif forloop.counter == 2 %}
+<div class="card text-white" style="background:#049e56;">
+<h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+
+{% elif forloop.counter == 9 %}
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+{% elif forloop.counter == 12 %}
+<div class="card-header  border text-center" style="background:#f7f7f7a6;">
+  <h4>{{pregunta.get_clasificacion_display}}</h4>
+</div>
+</br>
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+{% elif forloop.counter == 19 %}
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+{% elif forloop.counter == 24 %}
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+{% elif forloop.counter == 31 %}
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+</br> 
+<div style="font-family: Arial Black"> Se cuenta con señalización preventiva, informativa y restrictiva requerida 
+en materia de seguridad industrial y protección civil en:</div></br>
+{% elif forloop.counter == 35 %}
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+{% elif forloop.counter == 39%}
+<div class="card-header  border text-center" style="background:#f7f7f7a6;">
+  <h4>{{pregunta.get_clasificacion_display}}</h4></div>
+</br>
+<div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+</br>
+
+{% elif forloop.counter == 49 %}
+<div class="card-header  border text-center" style="background:#f7f7f7a6;">
+  <h4>{{pregunta.get_clasificacion_display}}</h4></div>
+</br>
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+{% elif forloop.counter == 60 %}
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+
+{% elif forloop.counter == 61 %}
+<div style="font-family: Arial Black"> Se ha obtenido la asignación de grado de riesgo por:
+</div></br>
+
+{% elif forloop.counter == 64 %}
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+</br> 
+<div style="font-family: Arial Black"> &nbsp;CARACTERÍSTICAS GENERALES</div></br>
+
+
+{% elif forloop.counter == 67 %}
+<div style="font-family: Arial Black"> &nbsp;PRUEBAS A LOS DETECTORES Y ALARMAS</div></br>
+
+
+{% elif forloop.counter == 69 %}
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+</br> 
+
+{% elif forloop.counter == 76 %}
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+</br> 
+<div style="font-family: Arial Black"> &nbsp;EXTINTORES PORTATILES</div></br>
+
+{% elif forloop.counter == 78 %}
+</br> 
+<div style="font-family: Arial Black"> &nbsp; EXTINTORES MÓVILES </div></br>
+
+{% elif forloop.counter == 80 %}
+</br> 
+<div style="font-family: Arial Black"> &nbsp; DISTRIBUCIÓN DE EXTINTORES </div></br>
+
+{% elif forloop.counter == 83 %}
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+{% elif forloop.counter == 85 %}
+  <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+{% elif forloop.counter == 88 %}
+<div class="card-header  border text-center" style="background:#f7f7f7a6;">
+  <h4>{{pregunta.get_clasificacion_display}}</h4></div>
+</br> 
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+{% elif forloop.counter == 93 %}
+<div class="card-header  border text-center" style="background:#f7f7f7a6;">
+  <h4>{{pregunta.get_clasificacion_display}}</h4></div>
+</br>
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+
+{% elif forloop.counter == 95 %}
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+
+{% elif forloop.counter == 99 %}
+<div style="font-family: Arial Black"> &nbsp; PROGRAMA DE TRABAJO DE SEGURIDAD, SALUD Y PREVENCIÓN DE RIESGOS.
+</div></br>
+
+  {% elif forloop.counter == 101 %}
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+{% elif forloop.counter == 106 %}
+  <div style="font-family: Arial Black"> &nbsp; ¿Qué hacer en caso de evacuación?
+  </div></br>
+
+{% elif forloop.counter == 114 %}
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+  {% elif forloop.counter == 117 %}
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+  {% elif forloop.counter == 119 %}
+<div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+{% endif %}
+
+    <div class="shadow-sm p-3 mb-4 bg-white rounded">
+  <table width="80%"> <!-- Inicio de tabla-->
+        <tbody>
+          <tr>
+            <th>
+              <div>   <!-- seccion de preguntas y opciones-->
+              {{pregunta.no_pregunta}} .-
+      {{pregunta.pregunta}} 
+       
+    <h6>¿Cumple?</h6>
+    <div class="radio">
+ <div class="form-check">
+  <label class="form-check-label">
+    <input id="Nocheck-{{forloop.counter}}" type='hidden' value="False" name='condiciones'>
+    <input type="checkbox" name="condiciones" value="True" id="check-{{ forloop.counter }}" onchange='javascript:showContent("{{ forloop.counter }}")' >
+    Si
+    
+</label>
+</div>
+
+
+
+  </td>
+    </tr>
+    <tr>
+            <th>
+          
+
+<!-- seccion observaciones-->
+<div id="content-{{ forloop.counter }}" style="display: block;">
+     <h8>SI NO CUMPLE, continue con la siguiente pregunta o deje observaciones en el recuadro</h8>
+     </br>
+  <textarea style="width: 600px; " name="observaciones" id="comentario-{{ forloop.counter }}" cols="2"></textarea>
+ </div>
+<!-- seccion de observaciones-->
+
+
+            </th>
+          </tr>
+        </tbody>
+      </table> <!-- Fin de tabla-->
+
+
+</div>
+        {% endfor %}
+
+<input class="btn btn-success" style="margin-top: 5px;" type='submit' value='Guardar informe'>
+
+</form>
+
+
+  </div>
+
+  </div>
+   </div>
+
+{% endblock %}
+

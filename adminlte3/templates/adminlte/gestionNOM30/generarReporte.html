@@ -1,0 +1,28 @@
+{% extends 'adminlte/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="shadow-sm p-3 mb-4 bg-white rounded col-md-6">
+<div class="shadow-sm p-3 mb-4 bg-white rounded">
+
+    <legend style="font-family: Lucida Bright" class=" text-center">GENERACIÓN DE INFORME FINAL</legend>
+
+    <h6>DIAGNOSTICO INTEGRAL SOBRE CONDICIONES DE SEGURIDAD Y SALUD</h6>
+    <h8 style="font-family: Times new roman">Pulse el botón para descargar su reporte docx</h8>
+ 
+</br></br>
+
+<form action="{% url 'coverletter_export' establecimiento n_reporte %}" method="post" role="form">   
+     {% csrf_token %}    <button type="submit" class="btn btn-success">       
+ <i class="fa fa-download"></i> Generar y descargar .docx    </button>
+</form>
+
+</br>
+</div>
+<form action="{% url 'index'  %}" method="post" role="form">    {% csrf_token %}    
+    <button type="submit" class="btn btn-outline-success " style="margin-left:449px;">     
+       <i class=""></i> Salir   &nbsp;  </button>
+    </form>
+
+</div>
+{% endblock %}

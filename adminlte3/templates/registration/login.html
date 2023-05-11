@@ -1,0 +1,108 @@
+{% extends "adminlte/base.html" %}
+{% load i18n static %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body_class %}login-page{% endblock %}
+
+{% block body %}
+
+<div class="container" >
+{% block logo %}
+
+
+<link rel="icon" type="image/png" href="{% static 'admin-lte/dist/img/CFE.png' %}"/>
+
+<link rel="stylesheet" type="text/css" href="{% static 'admin-lte/dist/css/loginnom30css/bootstrap.min.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'admin-lte/dist/css/loginnom30css/font-awesome.min.css' %}"/>
+    <!--<link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/lf/Login_v15/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>-->
+<link rel="stylesheet" type="text/css" href="{% static 'admin-lte/dist/css/loginnom30css/animate.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'admin-lte/dist/css/loginnom30css/icon-font.min.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'admin-lte/dist/css/loginnom30css/hamburgers.min.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'admin-lte/dist/css/loginnom30css/animsition.min.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'admin-lte/dist/css/loginnom30css/select2.min.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'admin-lte/dist/css/loginnom30css/daterangepicker.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'admin-lte/dist/css/loginnom30css/util.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'admin-lte/dist/css/loginnom30css/main.css' %}"/>
+<script src="{% static 'admin-lte/dist/js/loginnom30js/sweetalert.min.js' %}"></script>
+
+{% endblock %}
+    <!-- /.login-box   ESTE DISEÑO DE LOGIN AGREGUÉ -->
+   <div class="limiter">
+		<div class="container-login100">
+
+  {% if form.non_field_errors %}
+  {% for error in form.non_field_errors %}
+  <script>
+    swal({
+           title: "Error",
+           text: "{{ error }}",
+           icon: "error",
+             });
+  </script>
+  
+  {% endfor %}
+{% endif %}
+
+			<div class="wrap-login100">
+				<div class="login100-form-title" style="background-image: url('/static/admin-lte/dist/img/loginimg/CFELogin.jpg');">
+					<span class="login100-form-title-1">
+						</br>
+					</span>
+				</div>
+
+				<form class="login100-form validate-form" method="POST">
+				  {% csrf_token %}
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Usuario requerido">
+						<span class="label-input100">Usuario</span>
+						<input class="input100" type="text" name="username" id="id_username" placeholder="Ingrese nombre de usuario">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Contraseña requerida">
+						<span class="label-input100">Contraseña</span>
+						<input class="input100" type="password" name="password" id="id_password" placeholder="Ingrese contraseña">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="flex-sb-m w-full p-b-30">
+						<!--<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								Recordar
+							</label>
+						</div>-->
+
+						<div>
+							<!--<a href="{% url 'registro' %}" class="txt1">
+								Registrar usuario
+							</a>-->
+						</div>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn btn" type="submit">
+							Iniciar sesión    
+						</button>
+					</div>
+					
+				</form>
+		
+		
+			</div>
+		</div>
+	</div>
+<script src="{% static 'admin-lte/dist/js/loginnom30js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'admin-lte/dist/js/loginnom30js/animsition.min.js' %}"></script>
+<script src="{% static 'admin-lte/dist/js/loginnom30js/popper.js' %}"></script>
+<script src="{% static 'admin-lte/dist/js/loginnom30js/bootstrap.min.js' %}"></script>
+<script src="{% static 'admin-lte/dist/js/loginnom30js/select2.min.js' %}"></script>
+<script src="{% static 'admin-lte/dist/js/loginnom30js/moment.min.js' %}"></script>
+<script src="{% static 'admin-lte/dist/js/loginnom30js/daterangepicker.js' %}"></script>
+<script src="{% static 'admin-lte/dist/js/loginnom30js/countdowntime.js' %}"></script>
+<script src="{% static 'admin-lte/dist/js/loginnom30js/main.js' %}"></script>
+<script src="{% static 'admin-lte/dist/js/loginnom30js/beacon.min.js' %}"></script>
+
+
+
+    <!-- /.login-box -->
+{% endblock %}

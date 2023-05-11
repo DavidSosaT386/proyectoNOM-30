@@ -1,0 +1,107 @@
+{% extends 'adminlte/base.html' %}
+
+{% block content %}
+  <div class=" shadow-sm p-3 mb-4 bg-white rounded">
+<div class="shadow-sm p-3 mb-4 bg-white rounded ">
+      <center> <h3 class="page-header">GESTIÓN DE PREGUNTAS PARA FORMULARIOS</h3>  </center>
+</div>
+<form method='POST' >
+    
+{% csrf_token %}
+
+
+{% for i in range %}
+
+         
+                        <div class=" shadow-sm p-3 mb-4 bg-white rounded">
+        <table>
+                <tr>
+Número de pregunta: <input type="number" style="width: 80px;" name="no_pregunta">
+</tr></br></br>
+<tr>
+Pregunta: <input type="text" name="pregunta" style="width: 400px;">
+</tr></br></br>
+<tr>   
+Categoría:
+<select name="categoria" style="width: 120px;">
+    <option value="categoria1" selected>Almacén</option>
+    <option value="categoria2">Oficina</option>
+    <option value="categoria3">Subestación</option>
+  </select>
+</tr>
+<tr>
+</br></br> Clasificación: 
+<select name="clasificacion" style="width: 300px;">
+    <option value="clas1">Localización</option> 
+    <option value="clas2" >Condiciones de la instalación</option>
+    <option value="clas3" >Riesgos inherentes a la instalación</option>
+    <option value="clas4" >Protección contra incendios</option>
+    <option value="clas5">Peligros circundantes al centro de trabajo</option>
+    <option value="clas6" selected>Procedimientos administrativos</option>
+    <option value="clas7">Requerimientos normativos en materia de seguridad</option>
+  </select>
+</tr>
+</br></br>
+<tr>
+Subclasificación:
+<select name="sub_clasificacion" style="width: 300px;">
+        <option value="clas1" selected>Terremotos</option>
+        <option value="clas2">Clima / Riesgos naturales</option>
+        <option value="clas3">Riesgos de terceros</option>
+        <option value="clas4">Distribución</option>
+        <option value="clas5">Antiguedad / Condiciones físicas</option>
+        <option value="clas6">Orden y Limpieza</option>
+        <option value="clas7">Señalización</option>
+        <option value="clas8">Prevención del fuego</option>
+        <option value="clas9">Reducción del crecimiento y propagación del fuego</option>
+        <option value="clas10">Sistema de detección y alarma de incendios</option>
+        <option value="clas11">Sistemas fijos de extinción</option>
+        <option value="clas12">Extintores portátiles y móviles</option>
+        <option value="clas13">Brigada contra incendio</option>
+        <option value="clas14">Convenios de cooperación y ayuda mutua</option>
+        <option value="clas15">Procedimientos de mantenimiento e inspección</option>
+        <option value="clas16">Procedimientos de seguridad</option>
+        <option value="clas17">Protección civil / planes de emergencia / y se cuenta con los procedimientos por escrito para</option>
+        <option value="clas18">Seguridad ambiental</option>
+        <option value="clas19">Capacitacion y entrenamiento</option>
+        <option value="clas20">Procedimientos para control de contratistas</option>
+        <option value="clas21">Drenajes</option>
+        <option value="clas22">Seguridad y vigilancia</option>
+        <option value="clas23">Riesgos inherentes</option>
+        <option value="clas24">Peligros circundantes</option>
+        <option value="clas25">Caseta de control de la subestación</option>
+        <option value="clas26">Tableros y gabinetes de control</option>
+        <option value="clas27">Tablero de corriente directa y corriente alterna</option>
+        <option value="clas28">Cargadores de baterías</option>
+        <option value="clas29">Cuarto de baterías</option>
+        <option value="clas30">Cuarto de control supervisorio</option>
+        <option value="clas31">Cuarto de comunicaciones</option>
+        <option value="clas32">Transformadores, autotransformadores y reactores</option>
+        <option value="clas33">Interruptores</option>
+        <option value="clas34">Transformadores de instrumentos (TC´s, TP´s y DP´s)</option>
+        <option value="clas35">Cuchillas, apartarrayos, buses y banco de capacitores</option>
+        <option value="clas36">Trincheras y ductos de cables</option>
+        <option value="clas37">Subestación de servicios propios</option>
+        <option value="clas38">Predio de la subestacion</option>
+        <option value="clas39">Sistema de detección y alarma de incendio en caseta de control</option>
+        <option value="clas40">Sistema fijo contraincendio para transformadores y autotransformadores</option>
+        <option value="clas41">Agentes pasivos</option>
+        <option value="clas42">Programa de trabajo de seguridad, salud y prevención de riesgos</option>
+        <option value="clas43">Procedimientos de operación</option>
+      </select>
+
+</tr>
+</br>
+</br>
+</table>
+        </div>
+
+        {% endfor %}
+<input class="btn btn-success" style="margin-top: 5px;" type='submit' value='Guardar preguntas'>
+
+
+</form>
+
+</div>
+
+{% endblock %}

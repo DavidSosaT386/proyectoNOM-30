@@ -1,0 +1,61 @@
+{% extends "adminlte/base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+  </script>
+  
+
+
+<div class="col-md-6" >
+<div class=" card" style="border-radius: 10px;">
+<div class="card-header" style="background:#049e56; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+
+  <legend style="font-family: calibri" class="text-white">CAMBIAR CONTRASEÑA 
+  
+   <a  style="background:#049e56;"  data-toggle="tooltip" data-placement="bottom" title=
+  "Su contraseña no puede ser similar a otros componentes de su información personal. 
+Su contraseña debe contener por lo menos 8 caracteres.
+Su contraseña no puede ser una contraseña usada muy comúnmente.
+Su contraseña no puede estar formada exclusivamente por números."
+
+   style="width: 60px; margin-top: 10px;"><i class="fas fa-lock"></i></a>
+  
+  </legend>
+ 
+  </div>
+
+  <br>
+  <div class="card-body">
+<form method="post">
+  {% csrf_token %}
+  <div class="form-group">
+  <label for="id_old_password">Contraseña actual:</label>
+  <input  class="form-control" type="password" placeholder="Ingrese contraseña antigua" name="old_password" autocomplete="current-password" autofocus="" required="" id="id_old_password"><br>
+   </div>
+<div class="form-group ">
+<label for="id_new_password1">Contraseña nueva:</label>
+<input class="form-control" type="password" placeholder="Ingrese su nueva contraseña" name="new_password1" autocomplete="new-password" required="" id="id_new_password1"><br>
+ </div>
+
+<div class="form-group">
+<label for="id_new_password2">Confirmar nueva contraseña:</label>
+<input   class="form-control" type="password" placeholder="Confirme su nueva contraseña" name="new_password2" autocomplete="new-password" required="" id="id_new_password2"><br>
+</div>
+  <button class="btn btn-outline-success" type="submit">Guardar cambios <i class="fas fa-save"></i></button>
+</form>
+</div>
+  </div>
+  </div>
+    </div>
+{% endblock %}
+
+
+

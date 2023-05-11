@@ -1,0 +1,32 @@
+
+.sidebar-dark-cfe{
+   /* background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1)), url(https://t4.ftcdn.net/jpg/02/97/30/07/360_F_297300732_pfJHla4gl5vCCUzQMHpovN7MokCWbfzG.jpg);
+*/
+background: linear-gradient(to bottom , #049e56, #155723);
+background-size: cover;
+
+   }
+.bg-cfe{
+
+     /* background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1)), url(https://t4.ftcdn.net/jpg/02/97/30/07/360_F_297300732_pfJHla4gl5vCCUzQMHpovN7MokCWbfzG.jpg);*/
+    
+    background: linear-gradient(to bottom , #049e56, #155723);  
+      background-size: cover;
+ 
+      }
+
+      .bg-cfe-footer{
+
+     
+       background: linear-gradient(to bottom , #ffffff, #ffffff);  
+         background-size: cover;
+    
+         }
+
+.wrap-login100mine {
+            width: 600px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+          }

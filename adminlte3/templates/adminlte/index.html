@@ -1,0 +1,81 @@
+{% extends 'adminlte/base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet"  href="{% static 'admin-lte/dist/css/cssnom30/miestiloindex.css' %}">
+
+
+	<div class="shadow-sm p-3 mb-4 bg-white rounded">
+							<h3 class="page-header">DIAGNOSTICO INTEGRAL SOBRE CONDICIONES DE SEGURIDAD Y SALUD</h3>
+</div>
+
+						
+					<div class="row">
+						<div class="col-md-8">
+							<!-- Segundo panel-->
+						<div class="panel panel-headline">
+				<div class="panel-heading">
+					<h3 class="panel-title">NOM-030-STPS-2009</h3>
+					<p class="panel-subtitle">SERVICIOS PREVENTIVOS DE SEGURIDAD Y SALUD EN EL TRABAJO-FUNCIONES Y ACTIVIDADES</p>
+				</div>
+				<div class="panel-body">
+					<h4>¿Qué es?</h4>
+					<p>NORMA Oficial Mexicana NOM-030-STPS-2009, Servicios preventivos de seguridad y salud en el trabajo-Funciones y actividades. Establecer las funciones y actividades que deberán realizar los servicios preventivos de seguridad y salud en el trabajo para prevenir accidentes y enfermedades de trabajo. </p></div>
+			</div>
+							<!-- fin del segundo -->
+						</div>					
+			<!-- PANEL NO PADDING -->
+			
+			<div class="panel">
+				<div class="panel-heading">
+					 <img src="{% static 'admin-lte/dist/img/principalimg/nom30inf.jpeg' %}" width="300" height="230"/>
+				</div>
+			</div>
+
+	<div class="container-fluid">	
+<div class="row">
+		<div class="col-md-4">
+
+			<!--Primer panel-->
+			<div class="panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Cumplimiento</h3>
+				</div>
+				<div class="panel-body">
+					<p>Las empresas que desean cumplir con esta Norma, deben de incorporarse al Programa de Autogestión de Seguridad y Salud en el Trabajo, PASST, y haber obtenido alguno de los reconocimiento de «Empresa Segura», otorgado por la STPS.
+					</p>
+				</div>
+			</div>
+			<!---->
+
+		</div>
+		
+		<div class="col-md-4">
+
+			<!-- Segundo panel-->
+			<div class="panel">
+				<div class="panel-heading">
+					 <img src="{% static 'admin-lte/dist/img/principalimg/CFEfin.jpg' %}" width="300" height="230"/>
+				</div>
+					
+			</div>
+			<!---->
+
+		</div>
+
+		<div class="col-md-4">
+
+			<!-- tercer panel -->
+			<div class="panel">
+					<div class="panel-heading">
+					 <img src="{% static 'admin-lte/dist/img/principalimg/cfetux.jpeg' %}" width="300" height="230"/>
+				</div>
+			</div>
+			<!---->
+		</div>
+	</div>
+
+			</div>	
+							
+					
+{% endblock %}

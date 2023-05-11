@@ -1,0 +1,77 @@
+{% extends 'adminlte/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="shadow-sm p-3 mb-4 bg-white rounded col-md-6">
+<legend style="font-family: calibri; color:#155723;">¿AGREGAR ANEXOS FOTOGRÁFICOS? <i class="fas fa-images"></i></legend>
+</br>
+
+
+<script src='{% static 'admin-lte/dist/js/loginjs/jquery.min.js' %}'></script>
+<script src="{% static 'admin-lte/dist/js/loginnom30js/sweetalert.min.js' %}"></script>
+
+<script>
+ $(document).ready(function() {
+    var max_fields      = 30; //maximum input boxes allowed
+    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+    var add_button      = $(".add_field_button"); //Add button ID
+   
+    var x = 1; //initlal text box count
+	
+   $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+	
+		     //text box increment
+            $(wrapper).append('<div></br><input type="file" name="foto_anexo" accept="image/*" id="id_foto_anexo" required></br></br><h6>Agregar comentarios descriptivos</h6><textarea name="descripcion" cols="50" rows="2" class="vLargeTextField" id="id_descripcion" required></textarea></br><button href="#"  class="remove_field btn btn-outline-default" style="color:#a80000;"><i class="fas fa-times-circle"> Quitar</i></button></div>'); //add input box
+            x++; 
+	  }
+    });
+  $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+       
+		e.preventDefault(); 
+		$(this).parent('div').remove(); 
+		x--;
+    })
+});
+</script>
+
+<form method='POST' enctype="multipart/form-data" >
+{% csrf_token %}
+
+<div class="input_fields_wrap" >
+<div>
+        
+<input type="file" name="foto_anexo" accept="image/*" id="id_foto_anexo" required >
+</br>
+</br>
+<h6>Agregar comentarios descriptivos</h6>
+<textarea name="descripcion" cols="50" rows="2"  class="vLargeTextField" id="id_descripcion" required></textarea>
+</br>
+</div>
+</div>
+
+
+
+<table> <!-- Lo cambiaremos por CSS -->
+           <tr>
+         
+              <td>
+              <button class="add_field_button btn btn-outline-default"><i class="fas fa-plus-circle" style="color:#004aa8;"> Agregar nueva foto</i></button>
+             </br>
+            </td>
+            </tr>
+          <tr>
+              <td>
+                </br>
+              <input class="btn btn-outline-success btn-block"  type="submit" value="Guardar" class="default" name="_save"> 
+</br>
+</td>
+              
+          </tr>
+</form>
+
+
+</div>
+
+{% endblock %}

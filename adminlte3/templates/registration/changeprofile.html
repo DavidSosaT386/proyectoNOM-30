@@ -1,0 +1,72 @@
+{% extends "adminlte/base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="col-md-6" >
+    <div class=" card" style="border-radius: 10px;">
+    <div class="card-header" style= "background: linear-gradient(to bottom , #049e56, #077920);   border-top-left-radius: 10px; border-top-right-radius: 10px;">
+    
+   
+  <center>
+    {% if us.foto_perfil%}
+    <img src="{{us.foto_perfil.url}}" style="width: 120px; height: 135px;"alt="" class="user-image img-circle elevation-2">
+     
+    {% else %}
+    <img src="{% static 'admin-lte/dist/img/ava1.png' %}" style="width: 90px; height: 100px;" class="user-image img-circle elevation-2" alt="User Image">
+    {% endif %}
+    <legend style="font-family: calibri" class="text-white">FOTOGRAFÍA ACTUAL
+      
+    </legend>
+  </center>
+
+     
+</div>
+      
+    
+      <br>
+      <div class="card-body">
+  <!--aca-->
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+      {% if us.foto_perfil%}
+      <label for="id_old_password">Seleccionar nueva foto de perfil</label></br>
+    <input type="file" name="foto_perfil" accept="image/*" id="id_foto_perfil">
+
+    {% else %}
+    <label for="id_old_password">Agregar foto de perfil</label></br>
+    <input type="file" name="foto_perfil" accept="image/*" id="id_foto_perfil">
+
+    {% endif %}
+  
+    <table>
+    <br>
+    <br>
+    
+    <button class="btn btn-outline-success float-left" type="submit" >Guardar</button>
+    <a href="{% url 'index' %}" class="btn btn-outline-secondary float-right">Cancelar</a>
+    </form>
+    
+    </div>
+      </div>
+      </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+

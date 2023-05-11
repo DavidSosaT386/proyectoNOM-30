@@ -1,0 +1,413 @@
+{% extends 'adminlte/base.html' %}
+
+{% block content %}
+<div class="shadow-sm p-3 mb-4 bg-white rounded ">
+<!-- Cambios en cada submodulo-->
+  <div class=" card p-3 mb-4 ">
+  <div class="card-header" style="background:#049e56;">
+{% if sub == "SubestacionTabascoPotencia" %}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Tabasco Potencia
+</legend>
+{% elif sub == "SubestacionKilometro20"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Kilometro 20
+</legend>  
+{% elif sub == "SubestacionVillahermosaNorte"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Villahermosa Norte
+</legend>  
+{% elif sub == "SubestacionMacuspanaII"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Macuspana II
+</legend>  
+{% elif sub == "SubestacionLosRios" %}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Los Ríos
+</legend>  
+{% elif sub == "SubestacionCardenasII"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Cárdenas II
+</legend>  
+{% elif sub == "SubestacionComalcalcoPotencia"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Comalcalco Potencia
+</legend>   
+{% elif sub == "SubestacionCarmen"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Carmen
+</legend>  
+{% elif sub == "SubestacionMezcalapaSwitcheo"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Mezcalapa Switcheo
+</legend>  
+{% elif sub == "SubestacionElSabino"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  El Sabino
+</legend>  
+{% elif sub == "SubestacionChicoasen"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Chicoasén  
+</legend>  
+{% elif sub == "SubestacionAngostura"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Angostura
+</legend>  
+{% elif sub == "SubestacionOaxacaPotencia"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Oaxaca Potencia
+</legend>  
+{% elif sub == "SubestacionJuchitanII"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Juchitán II
+</legend>  
+{% elif sub == "SubestacionCienega"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Ciénega
+</legend>  
+{% elif sub == "SubestacionLaVentaII"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  La Venta II
+</legend>  
+{% elif sub == "SubestacionLaVentaManiobras"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  La Venta Maniobras
+</legend>  
+{% elif sub == "SubestacionIxtepecPotencia"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Ixtepec Potencia
+</legend>  
+{% elif sub == "SubestacionMatiasRomeroPotencia" %}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Matías Romero Potencia
+</legend>  
+{% elif sub == "SubestacionTransistmica"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Transísmica
+</legend> 
+{% elif sub == "SubestacionTapachulaPotencia"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Tapachula Potencia
+</legend>  
+{% elif sub == "SubestacionElevadora" %}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Elevadora
+</legend>  
+{% elif sub == "SubestacionMalpasoI"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Malpaso I
+</legend>  
+{% elif sub == "SubestacionMalpasoII"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Malpaso II 
+</legend>  
+{% elif sub == "SubestacionPeñitas"%}
+<legend style="font-family: Lucida Bright" class="text-white text-center">
+  Peñitas
+</legend>  
+{% endif %}
+  <legend style="font-family: Lucida Bright" class="text-white text-center"> GUÍA DE VERIFICACIÓN SUBESTACIÓN</legend>
+     </div>
+    <div class=" p-3">
+  <h5 style="font-family: calibri">Responda a cada una de las siguientes preguntas de cada categoría:</h5><br>
+</div>
+ <br>
+
+<script type="text/javascript">
+    function showContent(numerito) {
+        element = document.getElementById('content-'+ numerito);
+          check = document.getElementById('check-'+ numerito);
+          Nocheck = document.getElementById('Nocheck-'+ numerito);
+          coment = document.getElementById('comentario-'+ numerito);
+        
+       if (check.checked) {
+        element.style.display='none';
+        coment.value = '';
+        Nocheck.disabled=true;
+       }
+
+     else{
+            element.style.display='block';
+            Nocheck.disabled=false;
+        }
+       
+    
+    }
+    
+</script>
+
+<div class="card-body ">
+  <form method='POST' >
+  {% csrf_token %}
+  {% for pregunta in pregu %}
+  
+  {% if forloop.counter == 1 %}
+  <div class="card-header  border text-center" style="background:#f7f7f7a6; font-family: Arial">
+  <h4>{{pregunta.get_clasificacion_display}}</h4>
+  </div></br>
+  
+  <div class="card text-white" style="background:#049e56;">
+  <h5>  &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+  
+  {% elif forloop.counter == 2 %}
+  <div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+  
+  {% elif forloop.counter == 11 %}
+  <div class="card-header  border text-center" style="background:#f7f7f7a6;">
+    <h4>{{pregunta.get_clasificacion_display}}</h4>
+  </div>
+  </br>
+  <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+  
+  {% elif forloop.counter == 19 %}
+  <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+  
+  {% elif forloop.counter == 24 %}
+  <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+  
+  {% elif forloop.counter == 36 %}
+  <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+  
+  {% elif forloop.counter == 40 %}
+  <div class="card text-white" style="background:#049e56;">
+      <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+  </br>
+  <div style="font-family: Arial Black"> SE CUENTA CON LA SEÑALIZACIÓN PREVENTIVA, INFORMATIVA Y RESTRICTIVA REQUERIDA EN MATERIA DE SEGURIDAD INDUSTRIAL Y PROTECCIÓN CIVIL EN:
+  </div></br>
+
+  {% elif forloop.counter == 46 %}
+  <div class="card text-white" style="background:#049e56;">
+      <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+  </br>
+
+  {% elif forloop.counter == 52 %}
+  <div class="card-header  border text-center" style="background:#f7f7f7a6;">
+    <h4>{{pregunta.get_clasificacion_display}}</h4></div>
+  </br>
+  <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+  
+  {% elif forloop.counter == 54 %}
+    <div class="card text-white" style="background:#049e56;">
+        <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+    </br>
+
+  {% elif forloop.counter == 59 %}
+  <div class="card-header  border text-center" style="background:#f7f7f7a6;">
+    <h4>{{pregunta.get_clasificacion_display}}</h4>
+  </div>
+  </br>
+  <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+  
+  
+  {% elif forloop.counter == 71 %}
+  <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+  </br> 
+  
+  
+  {% elif forloop.counter == 85 %}
+    <div class="card text-white" style="background:#049e56;">
+      <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+  
+  {% elif forloop.counter == 92 %} 
+  <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+  
+  
+  {% elif forloop.counter == 103 %}
+  <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+  
+  {% elif forloop.counter == 115 %}
+  <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+  
+  {% elif forloop.counter == 130 %}
+    <div class="card text-white" style="background:#049e56;">
+      <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+  {% elif forloop.counter == 141 %}
+      <div class="card text-white" style="background:#049e56;">
+        <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+  
+  {% elif forloop.counter == 165 %}
+     <div class="card text-white" style="background:#049e56;">
+       <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+  {% elif forloop.counter == 176 %}
+  <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+  {% elif forloop.counter == 183 %}
+  <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+  {% elif forloop.counter == 199 %}
+  <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+  {% elif forloop.counter == 205 %}
+  <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+  {% elif forloop.counter == 208 %}
+  <div class="card text-white" style="background:#049e56;">
+  <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+  {% elif forloop.counter == 213 %}
+  <div class="card-header  border text-center" style="background:#f7f7f7a6;">
+    <h4>{{pregunta.get_clasificacion_display}}</h4></div>
+  </br>
+  <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+  {% elif forloop.counter == 215 %}
+    <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+    </br>
+    <div style="font-family: Arial Black"> FOSA DE CAPTACION PARA TRANSFORMADOR</div></br>
+
+    {% elif forloop.counter == 218 %}
+    <div style="font-family: Arial Black"> DIQUE DE CONTENCION PARA TRANFORMADOR (En caso de no contar con fosa de captación).</div></br>
+
+    {% elif forloop.counter == 219 %}
+    <div style="font-family: Arial Black"> TANQUE COLECTOR DE ACEITE PARA CUANDO SE CUENTE CON MÁS DE UN TRANSFORMADOR</div></br>
+
+    {% elif forloop.counter == 222 %}
+    <div style="font-family: Arial Black"> MAMPARAS ENTRE TRANSFORMADORES, CASETA O EQUIPO ELECTRICO PRIMARIO CUANDO LA DISTANCIA ES MENOR A 6.1 m.</div></br>
+
+    {% elif forloop.counter == 224 %}
+    <div style="font-family: Arial Black"> SISTEMA DE DETECCION, ALARMA Y FIJO DE EXTINCIÓN DE INCENDIO EN LOS TRANSFORMADORES PARA LAS SE's </div></br>
+
+
+    {% elif forloop.counter == 233 %}
+    <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+    <div style="font-family: Arial Black"> EXTINTORES PORTATILES DE CO2 6 KG., VALVULA DE LOS EXTINTORES A 1.50 MTS. DE ALTURA MAXIMA, DISTRIBUIDOS A UNA 
+      DISTANCIA NO MAYOR A 9 MTS. ENTRE ELLOS. EN TALLERES, LABORATORIOS, CASETA DE LA SUBESTACION, CUARTO DE CONTROL Y COMUNICACIONES.
+    </div></br>
+    <div style="font-family: Arial Black"> FUERA DEL CUARTO DE BATERIAS JUNTO A LA PUERTA DE ENTRADA UN EXTINTOR PORTATIL DE POLVO QUIMICO SECO ABC 
+      DE 9 KG. Y A UNA ALTURA DE 1.5 m.
+    </div></br>
+
+    {% elif forloop.counter == 236 %}
+    <div style="font-family: Arial Black">  EXTINTORES MÓVILES DE POLVO QUIMICO SECO ABC DE 50 KG. CON FECHA DE ULTIMA RECARGA E INSPECCION, CON SELLOS 
+      Y MANÓMETROS EN BUEN ESTADO Y CON CASETA DE PROTECCION PARA INTEMPERIE DISTRIBUIDOS DE ACUERDO A LO SIGUIENTE:
+       </div></br>
+
+
+    {% elif forloop.counter == 241 %}
+    <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+    {% elif forloop.counter == 244 %}
+    <div class="card-header  border text-center" style="background:#f7f7f7a6;">
+      <h4>{{pregunta.get_clasificacion_display}}</h4></div>
+    </br>
+    <div class="card text-white" style="background:#049e56;">
+      <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+
+    {% elif forloop.counter == 249 %}
+    <div class="card-header  border text-center" style="background:#f7f7f7a6;">
+      <h4>{{pregunta.get_clasificacion_display}}</h4></div>
+    </br>
+    <div class="card text-white" style="background:#049e56;">
+      <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+
+    {% elif forloop.counter == 257 %}
+    <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+
+    {% elif forloop.counter == 259 %}
+    <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+    {% elif forloop.counter == 264 %}
+    <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+    {% elif forloop.counter == 267 %}
+    <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+    
+    {% elif forloop.counter == 269 %}
+    <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+    {% elif forloop.counter == 271 %}
+    <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+    {% elif forloop.counter == 273 %}
+    <div class="card text-white" style="background:#049e56;">
+    <h5> &nbsp; {{pregunta.get_sub_clasificacion_display}}</h5></div>
+
+
+  {% endif %}
+
+
+    <div class="shadow-sm p-3 mb-4 bg-white rounded">
+  <table width="80%"> <!-- Inicio de tabla-->
+        <tbody>
+          <tr>
+            <th>
+              <div>   <!-- seccion de preguntas y opciones-->
+              {{pregunta.no_pregunta}} .-
+      {{pregunta.pregunta}} 
+       
+    <h6>¿Cumple?</h6>
+    <div class="radio">
+ <div class="form-check">
+  <label class="form-check-label">
+    <input id="Nocheck-{{forloop.counter}}" type='hidden' value="False" name='condiciones'>
+    <input type="checkbox" name="condiciones" value="True" id="check-{{ forloop.counter }}" onchange='javascript:showContent("{{ forloop.counter }}")' >
+    Si
+    
+</label>
+</div>
+
+
+
+  </td>
+    </tr>
+    <tr>
+            <th>
+          
+
+<!-- seccion observaciones-->
+<div id="content-{{ forloop.counter }}" style="display: block;">
+     <b>En caso contrario agregre observaciones</b>
+     </br>
+  <textarea style="width: 400px; " name="observaciones" id="comentario-{{ forloop.counter }}" cols="2"></textarea>
+ </div>
+<!-- seccion de observaciones-->
+
+
+            </th>
+          </tr>
+        </tbody>
+      </table> <!-- Fin de tabla-->
+
+
+</div>
+        {% endfor %}
+
+<input class="btn btn-success" style="margin-top: 5px;" type='submit' value='Guardar informe'>
+
+</form>
+
+
+  </div>
+    </div>  </div>
+
+{% endblock %}

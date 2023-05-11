@@ -1,0 +1,1206 @@
+{% load adminlte_helpers %}
+
+{% load static %}
+<!-- Left side column. contains the sidebar -->
+
+
+{% block style %}
+<link rel="stylesheet" type="text/css"  href="{% static 'admin-lte/dist/css/csspersonalizados/estilospersonalizados.css' %}"/>
+
+<aside class="main-sidebar sidebar-dark-cfe elevation-4 "  >
+    <style>
+    /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: linear-gradient(to bottom , #049e56, #155723);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #155723;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0F461B;
+}
+    </style>   
+{% endblock style %}
+
+     <!-- Brand Logo -->
+    {% block logo %}
+        <a href="/" class="brand-link">
+            <img src="{% static 'admin-lte/dist/img/CFE.png' %}" alt="AdminLTE Logo" class="" style=" width: 50px;height: 60px; border-radius: 15px;">
+            {% block logo_text %}<span class="brand-text font-weight-light text-white" style="font-family: Lucida Bright;">  NOM-030 CFE </span>{% endblock %}
+        </a>
+    {% endblock %}
+    <!-- sidebar: style can be found in sidebar.less -->
+    <div class="sidebar" style="overflow:auto;">
+        <!-- Sidebar user panel -->
+     
+        {% block user_panel %}
+        <!-- Sidebar user panel (optional) -->
+        {% if request.user.is_authenticated%}       <!-- le agregue esto del or-->
+      
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+            {% if us.foto_perfil %}
+            
+            <img src="{{us.foto_perfil.url}}" class="img-circle elevation-2" alt="User Image">
+ 
+            {% else %}
+          <img src="{% static 'admin-lte/dist/img/ava1.png' %}" class="img-circle elevation-2" alt="User Image">
+        
+          {% endif %}
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">  
+
+            {% if us %}   
+            {{us.nombre}}
+            {% endif %}       
+          <br>
+            {% firstof request.user.get_full_name request.user.username %} &nbsp; 
+            {{us.centro_trabajo}}
+         
+        
+           
+        </a>     
+      
+        </div>      
+      </div>
+
+
+
+
+      
+      {% endif %}
+        {% endblock %}
+
+        {% block form %}{% endblock %}
+ 
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        {% block nav_links_ul %}
+        <nav class="mt-1" >
+            <div >
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" >
+            {% block nav_links_outer %}
+            <li class="nav-header" >{% block nav_heading %}<small>VERIFICACIÓN</small>{% endblock %}</li>
+
+            {% block nav_links %}
+
+               {% if request.user.is_authenticated %}
+
+
+        <!-- CENTRO DE TRABAJO VILLAHERMOSA -->
+
+                {% if us.centro_trabajo == "Villahermosa" %}
+                
+                <li class="nav-item has-tree-view" >
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-warehouse"></i>
+                        <p>Almacenes</p>
+                         <p><i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                   <ul class="nav nav-treeview menu-open">     
+                            <li class="nav-item">
+                                <a href="{% url 'almacen' "AlmacenVillahermosa" %}" class="nav-link">
+                                   
+                                    &nbsp; <i class="nav-icon fas fa-warehouse"></i> Almacén Villahermosa
+                                    </a>
+                                </li>
+                        <li class="nav-item">
+                            <a href="{% url 'almacen' "Almacen16.5" %}" class="nav-link ">
+                                &nbsp; <i class="nav-icon fas fa-warehouse"></i> Almacen 16.5
+                            </a>
+                        </li>
+                    </ul>
+                
+       </li>
+                    
+                 <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-building"></i>
+                        <p>Oficinas</p>
+                         <p><i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                <ul class="nav nav-treeview menu-open">
+                            <li class="nav-item">
+                                    <a href="{% url 'oficina' "OficinasVillahermosa" %}" class="nav-link">
+                                        &nbsp;    <i class="nav-icon fas fa-building"></i> Oficina Villahermosa
+                                    </a>
+                                </li>
+                    </ul>
+
+
+                        </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-industry"></i>
+                        <p>Subestaciones</p>
+                         <p><i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview menu-open">
+                            <li class="nav-item">
+                                    <a href="{% url 'subestacion' "SubestacionTabascoPotencia" %}" class="nav-link">
+                                        &nbsp;   <i class="nav-icon fas fa-industry"></i> Tabasco Potencia
+                                    </a>
+                                </li>
+                        <li class="nav-item">
+                            <a href="{% url 'subestacion' "SubestacionKilometro20" %}" class="nav-link ">
+                                &nbsp; <i class="nav-icon fas fa-industry"></i> Kilometro 20
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'subestacion' "SubestacionVillahermosaNorte" %}" class="nav-link ">
+                                &nbsp;  <i class="nav-icon fas fa-industry"></i> Villahermosa Norte
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'subestacion' "SubestacionMacuspanaII" %}" class="nav-link ">
+                                &nbsp;  <i class="nav-icon fas fa-industry"></i> Macuspana II
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'subestacion' "SubestacionLosRios" %}" class="nav-link ">
+                                &nbsp;   <i class="nav-icon fas fa-industry"></i> Los Ríos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'subestacion' "SubestacionCardenasII" %}" class="nav-link ">
+                                &nbsp;   <i class="nav-icon fas fa-industry"></i> Cárdenas II
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'subestacion' "SubestacionComalcalcoPotencia" %}" class="nav-link ">
+                                &nbsp;   <i class="nav-icon fas fa-industry"></i> Comalcalco Potencia
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'subestacion' "SubestacionCarmen" %}" class="nav-link ">
+                                &nbsp;   <i class="nav-icon fas fa-industry"></i> Carmen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'subestacion' "SubestacionMezcalapaSwitcheo" %}" class="nav-link ">
+                                &nbsp;   <i class="nav-icon fas fa-industry"></i> Mezcalapa Switcheo
+                            </a>
+                        </li>
+                    </ul>
+
+                        </li>
+ <!-- CENTRO DE TRABAJO TUXTLA -->
+
+        {% elif us.centro_trabajo == "Tuxtla gutierrez"  %}
+        <li class="nav-item has-tree-view" >
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-warehouse"></i>
+                <p>Almacenes</p>
+                    <p><i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview menu-open">     
+                    <li class="nav-item">
+                        <a href="{% url 'almacen' "AlmacenElSabino" %}" class="nav-link">
+                            
+                            &nbsp;   <i class="nav-icon fas fa-warehouse"></i> El Sabino
+                            </a>
+                        </li>
+                <li class="nav-item">
+                    <a href="{% url 'almacen' "AlmacenChicoasen" %}" class="nav-link ">
+                        &nbsp;  <i class="nav-icon fas fa-warehouse"></i> Chicoasén
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'almacen' "AlmacenAngostura" %}" class="nav-link ">
+                        &nbsp;  <i class="nav-icon fas fa-warehouse"></i> Angostura
+                    </a>
+                </li>
+            </ul>
+        
+</li>
+            
+            <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-building"></i>
+                <p>Oficinas</p>
+                    <p><i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+        <ul class="nav nav-treeview menu-open">
+                    <li class="nav-item">
+                            <a href="{% url 'oficina' "OficinasSEDE" %}" class="nav-link">
+                                &nbsp; <i class="nav-icon fas fa-building"></i> Oficinas SEDE
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'oficina' "OficinaSectorChicoasen" %}" class="nav-link">
+                                &nbsp;   <i class="nav-icon fas fa-building"></i> Sector Chicoasén
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'oficina' "OficinaSectorAngostura" %}" class="nav-link">
+                                &nbsp;  <i class="nav-icon fas fa-building"></i> Sector Angostura
+                            </a>
+                        </li>
+            </ul>
+
+
+                </li>
+                <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-industry"></i>
+                <p>Subestaciones</p>
+                    <p><i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+
+            <ul class="nav nav-treeview menu-open">
+                    <li class="nav-item">
+                            <a href="{% url 'subestacion' "SubestacionElSabino" %}" class="nav-link">
+                                &nbsp;    <i class="nav-icon fas fa-industry"></i> El Sabino
+                            </a>
+                        </li>
+                <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionChicoasen" %}" class="nav-link ">
+                        &nbsp;   <i class="nav-icon fas fa-industry"></i> Chicoasén
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionAngostura" %}" class="nav-link ">
+                        &nbsp;  <i class="nav-icon fas fa-industry"></i> Angostura
+                    </a>
+                </li>
+            
+            </ul>
+
+                </li>
+                {% elif us.centro_trabajo == "Itsmo"  %}
+                
+                    
+                    <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-building"></i>
+                        <p>Oficinas</p>
+                            <p><i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                <ul class="nav nav-treeview menu-open">
+                            <li class="nav-item">
+                                    <a href="{% url 'oficina' "OficinasZonaItsmo" %}" class="nav-link">
+                                        &nbsp;    <i class="nav-icon fas fa-building"></i> Oficinas Zona Itsmo
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'oficina' "OficinasSectorOaxacaPotencia" %}" class="nav-link">
+                                        &nbsp;   <i class="nav-icon fas fa-building"></i> Oficinas Sector Oaxaca Potencia
+                                    </a>
+                                </li>
+                               
+                    </ul>
+
+
+                        </li>
+                        <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-industry"></i>
+                        <p>Subestaciones</p>
+                            <p><i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview menu-open">
+                            <li class="nav-item">
+                                    <a href="{% url 'subestacion' "SubestacionOaxacaPotencia" %}" class="nav-link">
+                                        &nbsp;   <i class="nav-icon fas fa-industry"></i> Oaxaca Potencia
+                                    </a>
+                                </li>
+                        <li class="nav-item">
+                            <a href="{% url 'subestacion' "SubestacionCienega" %}" class="nav-link ">
+                                &nbsp; <i class="nav-icon fas fa-industry"></i> Ciénega
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'subestacion' "SubestacionJuchitanII" %}" class="nav-link ">
+                                &nbsp;    <i class="nav-icon fas fa-industry"></i> Juchitán II
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'subestacion' "SubestacionLaVentaII" %}" class="nav-link ">
+                                &nbsp;   <i class="nav-icon fas fa-industry"></i> La Venta II
+                            </a>
+                        </li><li class="nav-item">
+                            <a href="{% url 'subestacion' "SubestacionLaVentaManiobras" %}" class="nav-link ">
+                                &nbsp;   <i class="nav-icon fas fa-industry"></i> La Venta Maniobras
+                            </a>
+                        </li><li class="nav-item">
+                            <a href="{% url 'subestacion' "SubestacionIxtepecPotencia" %}" class="nav-link ">
+                                &nbsp;    <i class="nav-icon fas fa-industry"></i> Ixtepec Potencia
+                            </a>
+                        </li><li class="nav-item">
+                            <a href="{% url 'subestacion' "SubestacionMatiasRomeroPotencia" %}" class="nav-link ">
+                                &nbsp;    <i class="nav-icon fas fa-industry"></i> Matías Romero Potencia
+                            </a>
+                        </li><li class="nav-item">
+                            <a href="{% url 'subestacion' "SubestacionTransistmica" %}" class="nav-link ">
+                                &nbsp;   <i class="nav-icon fas fa-industry"></i> Transísmica
+                            </a>
+                        </li>
+                    
+                    </ul>
+
+                        </li> 
+
+    <!-- CENTRO DE TRABAJO TAPACHULA -->                            
+        {% elif us.centro_trabajo == "Tapachula"  %}
+
+    
+        <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-building"></i>
+            <p>Oficinas</p>
+                <p><i class="right fas fa-angle-left"></i>
+            </p>
+        </a>
+    <ul class="nav nav-treeview menu-open">
+                <li class="nav-item">
+                        <a href="{% url 'oficina' "OficinasTapachula" %}" class="nav-link">
+                            &nbsp;    <i class="nav-icon fas fa-building"></i> Oficinas Tapachula
+                        </a>
+                    </li>
+                
+                    
+        </ul>
+
+
+            </li>
+            <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-industry"></i>
+            <p>Subestaciones</p>
+                <p><i class="right fas fa-angle-left"></i>
+            </p>
+        </a>
+
+        <ul class="nav nav-treeview menu-open">
+                <li class="nav-item">
+                        <a href="{% url 'subestacion' "SubestacionTapachulaPotencia" %}" class="nav-link">
+                            &nbsp;   <i class="nav-icon fas fa-industry"></i> Tapachula Potencia
+                        </a>
+                    </li>
+            
+        
+        </ul>
+
+            </li>              
+ <!-- CENTRO DE TRABAJO MALPASO -->
+
+
+{% elif us.centro_trabajo == "Malpaso"  %}
+
+<li class="nav-item has-tree-view" >
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-warehouse"></i>
+        <p>Almacenes</p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview menu-open">     
+            <li class="nav-item">
+                <a href="{% url 'almacen' "AlmacenesMalpaso" %}" class="nav-link">
+                    
+                    &nbsp;   <i class="nav-icon fas fa-warehouse"></i> Almacenes Malpaso
+                    </a>
+                </li>
+    </ul>
+
+</li>
+    
+    <li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-building"></i>
+        <p>Oficinas</p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+<ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'oficina' "OficinasZonaMalpaso" %}" class="nav-link">
+                        &nbsp;   <i class="nav-icon fas fa-building"></i> Oficinas Zona Malpaso
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'oficina' "OficinasSectorPeñitas" %}" class="nav-link">
+                        &nbsp;    <i class="nav-icon fas fa-building"></i> Oficinas Sector Peñitas
+                    </a>
+                </li>
+                
+    </ul>
+
+
+        </li>
+        <li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-industry"></i>
+        <p>Subestaciones</p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+    <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionElevadora" %}" class="nav-link">
+                        &nbsp;   <i class="nav-icon fas fa-industry"></i> Elevadora
+                    </a>
+                </li>
+        <li class="nav-item">
+            <a href="{% url 'subestacion' "SubestacionMalpasoI" %}" class="nav-link ">
+                &nbsp;   <i class="nav-icon fas fa-industry"></i> Malpaso I
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'subestacion' "SubestacionMalpasoII" %}" class="nav-link ">
+                &nbsp; <i class="nav-icon fas fa-industry"></i> Malpaso II
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'subestacion' "SubestacionPeñitas" %}" class="nav-link ">
+                &nbsp;  <i class="nav-icon fas fa-industry"></i> Peñitas
+            </a>
+        </li>
+    
+    </ul>
+
+        </li> 
+
+         <!-- CENTRO DE TRABAJO ZOTZE -->      
+    {% elif us.centro_trabajo == "Zotze"  %}
+            
+                
+    <li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-building"></i>
+        <p>Oficinas</p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+<ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'oficina' "OficinasZotze" %}" class="nav-link">
+                        &nbsp;    <i class="nav-icon fas fa-building"></i> Oficinas ZOTZE
+                    </a>
+                </li>
+                
+    </ul>
+     </li>   
+
+ <!-- SEDE ADMIN -->
+
+ {% elif us.centro_trabajo == "sede"  %}
+
+  <!-- SEDE  -->
+
+  <li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class=""></i>
+        <p> ZONA SEDE </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+    <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-building"></i>
+        <p> Oficina </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+
+    <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'oficina' "OficinasSEDE" %}" class="nav-link">
+                        &nbsp;   <i class="nav-icon fas fa-building"></i> Oficina SEDE
+                    </a>
+                </li>
+                
+    </ul>
+     
+
+                </li>
+
+           
+    </ul>
+
+                </li>
+
+
+
+
+ <!-- ========TODO Villahermosa======= -->
+  <li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class=""></i>
+        <p>VILLAHERMOSA </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+    <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="#" class="nav-link"><i class="nav-icon fas fa-warehouse"></i>
+        <p> Almacenes </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+
+    <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'almacen' "AlmacenVillahermosa" %}" class="nav-link">
+                        &nbsp;  <i class="nav-icon fas fa-warehouse"></i> Villahermosa
+                    </a>
+                </li>
+                
+    </ul>
+      <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'almacen' "Almacen16.5" %}" class="nav-link">
+                       &nbsp; <i class="nav-icon fas fa-warehouse"></i> Almacén 16.5
+                    </a>
+                </li>
+                
+    </ul>
+
+                </li>
+
+
+
+
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-building"></i>
+        <p> Oficinas </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'oficina' "OficinasVillahermosa" %}" class="nav-link">
+                        &nbsp; <i class="nav-icon fas fa-building"></i>Oficinas Villahermosa
+                    </a>
+                </li>
+                
+    </ul>
+
+        </li>
+        <li class="nav-item">
+           <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-industry"></i>
+        <p> Subestaciones </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionTabascoPotencia" %}" class="nav-link">
+                        &nbsp; <i class="nav-icon fas fa-industry"></i>Tabasco Potencia
+                    </a>
+                </li>
+                
+    </ul>
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionKilometro20" %}" class="nav-link">
+                        &nbsp; <i class="nav-icon fas fa-industry"></i>Kilometro 20
+                    </a>
+                </li>
+                
+    </ul>
+
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionVillahermosaNorte" %}" class="nav-link">
+                        &nbsp;   <i class="nav-icon fas fa-industry"></i>Villahermosa Norte
+                    </a>
+                </li>
+                
+    </ul>
+
+
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionMacuspanaII" %}" class="nav-link">
+                        &nbsp;    <i class="nav-icon fas fa-industry"></i>Macuspana II
+                    </a>
+                </li>
+                
+    </ul>
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionLosRios" %}" class="nav-link">
+                        &nbsp;   <i class="nav-icon fas fa-industry"></i>Los Ríos
+                    </a>
+                </li>
+                
+    </ul>
+
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionCardenasII" %}" class="nav-link">
+                        &nbsp;   <i class="nav-icon fas fa-industry"></i>Cádenas II
+                    </a>
+                </li>
+                
+    </ul>
+
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionComalcalcoPotencia" %}" class="nav-link">
+                        &nbsp;   <i class="nav-icon fas fa-industry"></i>Comalcalco Potencia
+                    </a>
+                </li>
+                
+    </ul>
+
+ 
+
+     <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionCarmen" %}" class="nav-link">
+                        &nbsp;   <i class="nav-icon fas fa-industry"></i>Carmen
+                    </a>
+                </li>
+                
+    </ul>
+
+     <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionMezcalapaSwitcheo" %}" class="nav-link">
+                        &nbsp;     <i class="nav-icon fas fa-industry"></i>Mezcalapa Switcheo
+                    </a>
+                </li>
+                
+    </ul>
+
+        </li>
+     
+    
+    </ul>
+
+        </li> 
+
+ <!-- =============== -->
+
+ <!-- =======TODO TUXTLA gutierrez======== -->
+<li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class=""></i>
+        <p> TUXTLA GUTIERREZ </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+    <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-warehouse"></i>
+        <p> Almacenes </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+
+    <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'almacen' "AlmacenElSabino" %}" class="nav-link">
+                        &nbsp;  <i class="nav-icon fas fa-warehouse"></i>El Sabino 
+                    </a>
+                </li>
+                
+    </ul>
+      <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'almacen' "AlmacenChicoasen" %}" class="nav-link">
+                        &nbsp;  <i class="nav-icon fas fa-warehouse"></i>Chicoasen
+                    </a>
+                </li>
+                
+    </ul>
+
+    <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'almacen' "AlmacenAngostura" %}" class="nav-link">
+                        &nbsp;  <i class="nav-icon fas fa-warehouse"></i>Angostura
+                    </a>
+                </li>
+                
+    </ul>
+
+                </li>
+
+
+
+
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-building"></i>
+        <p> Oficinas </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'oficina' "OficinasSEDE" %}" class="nav-link">
+                        &nbsp;   <i class="nav-icon fas fa-building"></i>Oficinas Sede
+                    </a>
+                </li>
+                
+    </ul>
+
+<ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'oficina' "OficinaSectorChicoasen" %}" class="nav-link">
+                        &nbsp;     <i class="nav-icon fas fa-building"></i>Sector Chicoasen 
+                    </a>
+                </li>
+                
+    </ul>
+
+<ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'oficina' "OficinaSectorAngostura" %}" class="nav-link">
+                        &nbsp;    <i class="nav-icon fas fa-building"></i>Sector Angostura 
+                    </a>
+                </li>
+                
+    </ul>
+
+        </li>
+        <li class="nav-item">
+           <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-industry"></i>
+        <p> Subestaciones </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+ 
+
+
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionElSabino" %}" class="nav-link">
+                        &nbsp;    <i class="nav-icon fas fa-industry"></i>El Sabino
+                    </a>
+                </li>
+                
+    </ul>
+
+
+     <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionChicoasen" %}" class="nav-link">
+                        &nbsp;  <i class="nav-icon fas fa-industry"></i>Chicoasen
+                    </a>
+                </li>
+                
+    </ul>
+
+     <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionAngostura" %}" class="nav-link">
+                        &nbsp; <i class="nav-icon fas fa-industry"></i>Angostura
+                    </a>
+                </li>
+                
+    </ul>
+
+        </li>
+     
+    
+    </ul>
+
+        </li> 
+
+<!-- =============== -->
+
+<!-- =======TODO TAPACHULA======== -->
+<li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class=""></i>
+        <p> TAPACHULA </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+    <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-building"></i>
+        <p> Oficinas </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'oficina' "OficinasTapachula" %}" class="nav-link">
+                        &nbsp;   <i class="nav-icon fas fa-building"></i>Oficinas Tapachula
+                    </a>
+                </li>
+                
+    </ul>
+
+                </li>
+
+
+
+
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-industry"></i>
+        <p> Subestaciones </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionTapachulaPotencia" %}" class="nav-link">
+                        &nbsp;    <i class="nav-icon fas fa-industry"></i> Tapachula Potencia
+                    </a>
+                </li>
+                
+    </ul>
+
+        </li>
+        
+     
+    
+    </ul>
+
+        </li> 
+
+<!-- =============== -->
+
+
+<!--TODO OAXACA-->
+<li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class=""></i>
+        <p> ISTMO OAXACA </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+    <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-building"></i>
+        <p> Oficinas </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+
+    <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'oficina' "OficinasZonaItsmo" %}" class="nav-link">
+                        &nbsp; <i class="nav-icon fas fa-building"></i> Zona Itsmo
+                    </a>
+                </li>
+                
+    </ul>
+      <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'oficina' "OficinasSectorOaxacaPotencia" %}" class="nav-link">
+                        &nbsp; <i class="nav-icon fas fa-building"></i> Sector Oaxaca 
+                    </a>
+                </li>
+                
+    </ul>
+
+                </li>
+
+
+
+
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-industry"></i>
+        <p> Subestaciones </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionOaxacaPotencia" %}" class="nav-link">
+                        &nbsp;  <i class="nav-icon fas fa-industry"></i>Oaxaca Potencia
+                    </a>
+                </li>
+                
+    </ul>
+
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionCienega" %}" class="nav-link">
+                        &nbsp; <i class="nav-icon fas fa-industry"></i>Ciénega
+                    </a>
+                </li>
+                
+    </ul>
+
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionJuchitanII" %}" class="nav-link">
+                        &nbsp; <i class="nav-icon fas fa-industry"></i>Juchitán II
+                    </a>
+                </li>
+                
+    </ul>
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionLaVentaII" %}" class="nav-link">
+                        &nbsp; <i class="nav-icon fas fa-industry"></i>la Venta II
+                    </a>
+                </li>
+                
+    </ul>
+     <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionLaVentaManiobras" %}" class="nav-link">
+                        &nbsp;  <i class="nav-icon fas fa-industry"></i>la Venta Maniobras
+                    </a>
+                </li>
+                
+    </ul>
+
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionIxtepecPotencia" %}" class="nav-link">
+                        &nbsp;  <i class="nav-icon fas fa-industry"></i>Ixtepec Potencia
+                    </a>
+                </li>
+                
+    </ul>
+     <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionMatiasRomeroPotencia" %}" class="nav-link">
+                        &nbsp;   <i class="nav-icon fas fa-industry"></i>Matías Romero
+                    </a>
+                </li>
+                
+    </ul>
+     <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionTransistmica" %}" class="nav-link">
+                        &nbsp;  <i class="nav-icon fas fa-industry"></i>Transístmica
+                    </a>
+                </li>
+                
+    </ul>
+        </li>
+      
+    
+    </ul>
+
+        </li> 
+
+
+<!-- =============== -->
+
+
+<!--TODO MALPASO-->
+<li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class=""></i>
+        <p> MALPASO</p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+    <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-warehouse"></i>
+        <p> Almacenes </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+
+    <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'almacen' "AlmacenesMalpaso" %}" class="nav-link">
+                        &nbsp;  <i class="nav-icon fas fa-warehouse"></i>Almacén Malpaso
+                    </a>
+                </li>
+                
+    </ul>
+   
+
+                </li>
+
+
+
+
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-building"></i>
+        <p> Oficinas </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'oficina' "OficinasZonaMalpaso" %}" class="nav-link">
+                        &nbsp; <i class="nav-icon fas fa-building"></i>Zona Malpaso
+                    </a>
+                </li>
+                
+    </ul>
+     <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'oficina' "OficinasSectorPeñitas" %}" class="nav-link">
+                        &nbsp;   <i class="nav-icon fas fa-building"></i>Sector Peñitas
+                    </a>
+                </li>
+                
+    </ul>
+
+
+        </li>
+        <li class="nav-item">
+           <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-industry"></i>
+        <p> Subestaciones </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionElevadora" %}" class="nav-link">
+                        &nbsp;    <i class="nav-icon fas fa-industry"></i>Elevadora
+                    </a>
+                </li>
+                
+    </ul>
+
+ <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionMalpasoI" %}" class="nav-link">
+                        &nbsp;   <i class="nav-icon fas fa-industry"></i>Malpaso I
+                    </a>
+                </li>
+                
+    </ul>
+
+
+     <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionMalpasoII" %}" class="nav-link">
+                        &nbsp;   <i class="nav-icon fas fa-industry"></i>Malpaso II
+                    </a>
+                </li>
+                
+    </ul>
+
+     <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'subestacion' "SubestacionPeñitas" %}" class="nav-link">
+                        &nbsp;    <i class="nav-icon fas fa-industry"></i> Peñitas
+                    </a>
+                </li>
+                
+    </ul>
+
+        </li>
+
+    </ul>
+
+        </li> 
+
+
+<!-- =============== -->
+<!--TODO ZOTsE-->
+<li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class=""></i>
+        <p> ZOTSE</p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+    <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-building"></i>
+        <p> Oficinas </p>
+            <p><i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+
+
+    <ul class="nav nav-treeview menu-open">
+            <li class="nav-item">
+                    <a href="{% url 'oficina' "OficinasZotze" %}" class="nav-link">
+                        &nbsp;   <i class="nav-icon fas fa-building"></i>Oficina Zotse
+                    </a>
+                </li>
+                
+    </ul>
+   
+
+                </li>
+
+
+
+
+
+    </ul>
+
+        </li> 
+
+
+<!-- =============== -->
+
+ <!-- INICIO DE SESIÓN -->
+                        {% endif %}
+                   
+      {% else %}
+              <li class="nav-item"  title="Iniciar sesión para acceder">
+              <a href="{% url 'login' %}" class="nav-link">
+                        <p >Iniciar sesión  <i class="fas fa-sign-in-alt"></i></p>
+                    </a>      
+                 <li class="nav-item">
+            
+          {% endif %}
+            {% endblock nav_links %}
+            {% endblock nav_links_outer %}
+            </ul>
+        </br>
+    </br>
+</br>
+</br>
+</br>
+        </div>
+            </nav>
+        {% endblock nav_links_ul %}
+  </div>
+    <!-- /.sidebar -->
+   
+</aside>
